@@ -5,6 +5,50 @@
         <title>MyStack</title>
     </head>
     <body>
-        
+        <script>
+
+            function Stack() {
+                let arr = [];
+
+                this.pop = function () {
+                    return arr.pop();
+                };
+                this.push = function (ele) {
+                    arr.push(ele);
+                };
+                this.size = function () {
+                    return arr.length;
+                };
+                this.isEmpty = function () {
+                    return arr.length === 0;
+                };
+                this.peek = function () {
+                    return arr[arr.length - 1];
+                };
+                this.clear = function () {
+                    arr = [];
+                };
+
+                this.toString = function () {
+                    return arr;
+                }
+            }
+
+
+            function convert(num, base) {
+                let stack = new Stack();
+                let str = '';
+                let bases = '0123456789ABCDEF';
+                while (num > 0) {
+                    let rem = Math.floor(num % base);
+                    stack.push(rem);
+                    num = Math.floor(num / base);
+                }
+                while (!stack.isEmpty()) {
+                    str += bases[stack.pop()];
+                }
+                return str;
+            }
+        </script>
     </body>
 </html>
