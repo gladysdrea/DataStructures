@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>PriorityQueue</title>
+    </head>
+    <body>
+        <script>
+            function PriorityQueue(){
+                let arr = [];
+                function PriorityElement(element,priority){
+                    this.element = element;
+                    this.priority = priority;
+                }
+                // enQueue
+                this.enQueue = function(element,priority){
+                    let priorityElement = new PriorityElement(element,priority);
+                    if(this.isEmpty){
+                        arr.push(priorityElement);
+                    }else{
+                        let add = false;
+                        for(let i = 0; i < arr.length; i++){
+                            if(arr[i].priority > priorityElement.priority){
+                                arr.splice(i,0,priorityElement);
+                                add = true;
+                                break;
+                            }
+                        }
+                        if(!add){
+                            arr.push(priorityElement);
+                        }
+                    }
+                };
+                // deQueue
+                this.deQueue = function(){
+                    return arr.shift().element;
+                };
+                // size
+                this.size = function(){
+                    return arr.length;
+                };
+                // isEmpty
+                this.isEmpty = function(){
+                    return arr.length === 0;
+                };
+                // front
+                this.front = function(){
+                    return arr[0].element;
+                };
+            }
+            let priorityQueue = new PriorityQueue();
+            priorityQueue.enQueue(2,1);
+            priorityQueue.enQueue(3,4);
+            priorityQueue.enQueue(8,5);
+            priorityQueue.enQueue(7,6);
+            alert(priorityQueue.deQueue());
+        </script>
+    </body>
+</html>
