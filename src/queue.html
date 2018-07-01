@@ -6,35 +6,44 @@
     </head>
     <body>
         <script>
-            function Queue(){
+            function Queue() {
                 let arr = [];
                 //enQueue
-                this.enQueue = function(ele){
+                this.enQueue = function (ele) {
                     arr.push(ele);
                 };
                 //deQueue
-                this.deQueue = function(){
+                this.deQueue = function () {
                     return arr.shift();
                 };
                 //size
-                this.size = function(){
+                this.size = function () {
                     return arr.length;
                 };
                 // isEmpty
-                this.iEmpty = function(){
+                this.iEmpty = function () {
                     return arr.length === 0;
                 };
                 // front
-                this.front = function(){
+                this.front = function () {
                     return arr[0];
                 }
             }
-            let queue = new Queue();
-            queue.enQueue(1);
-            queue.enQueue(2);
-            queue.enQueue(3);
-            queue.enQueue(4);
-            alert(queue.deQueue());
+
+            function cycleQueue(nameList, num) {
+                let queue = new Queue();
+                nameList.forEach(ele => queue.enQueue(ele));
+                while (queue.size() > 1) {
+                    for (let i = 0; i < num; i++) {
+                        queue.enQueue(queue.deQueue());
+                    }
+                    console.log(queue.deQueue() + '出局！');
+                }
+                console.log(queue.deQueue() + '胜利！');
+            }
+
+            let names = ['Nick', 'Jone', 'Andrea', 'Alice'];
+            cycleQueue(names, 3);
         </script>
     </body>
 </html>
