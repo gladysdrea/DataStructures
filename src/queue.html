@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Queue</title>
+    </head>
+    <body>
+        <script>
+            function Queue(){
+                let arr = [];
+                //enQueue
+                this.enQueue = function(ele){
+                    arr.push(ele);
+                };
+                //deQueue
+                this.deQueue = function(){
+                    return arr.shift();
+                };
+                //size
+                this.size = function(){
+                    return arr.length;
+                };
+                // isEmpty
+                this.iEmpty = function(){
+                    return arr.length === 0;
+                };
+                // front
+                this.front = function(){
+                    return arr[0];
+                }
+            }
+            let queue = new Queue();
+            queue.enQueue(1);
+            queue.enQueue(2);
+            queue.enQueue(3);
+            queue.enQueue(4);
+            alert(queue.deQueue());
+        </script>
+    </body>
+</html>
