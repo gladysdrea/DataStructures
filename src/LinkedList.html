@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>LinkedList</title>
+    </head>
+    <body>
+        <script>
+            function LinkedList () {
+                let Node = function (element) {
+                    this.element = element;
+                    this.next = null;
+                };
+
+                let length = 0;
+                let head = null;
+
+                this.append = function (e) {
+                    let node = new Node(e) , current;
+                    if(head == null){
+                        head = node;
+                    }else{
+                        current = head;
+                        while(current.next){
+                            current = current.next;
+                        }
+                        current.next = node;
+                    }
+                    length ++ ;
+                    return this;
+                };
+
+                this.removeAt = function (position) {
+                    if (position > -1 && position < length ) {
+
+                        let index = 0;
+                        let current = head;
+                        let previous;
+
+                        if(position === 0){
+                            // remove first
+                            head = current.next;
+                        } else {
+                            // remove anyone
+                            while ( index ++ < position) {
+                                previous = current;
+                                current = current.next;
+                            }
+                            previous.next = current.next;
+                        }
+                        length --;
+                        return current.element;
+                    }else{
+                        return null;
+                    }
+                };
+                this.insert = function(position , element){
+                    if(position > -1 && position <= length){
+                        let node = new Node(element);
+                        let index = 0;
+                        let current = head;
+                        let previous;
+                        if(position === 0){
+                            // insert first
+                            node.next = current;
+                            head = node;
+                        }else{
+                            while(index ++ < position){
+                                previous = current;
+                                current = current.next;
+                            }
+                            node.next = current;
+                            previous.next = node;
+                        }
+                        length ++;
+                        return true;
+                    }else{
+                        return false;
+                    }
+                };
+
+                this.toString = function(){
+                    let current = head;
+                    let result = '';
+                    while(current){
+                        result += ',' + current.element;
+                        current = current.next;
+                    }
+                    return result.slice(1);
+                };
+
+                this.indexOf = function(ele){
+                    let current = head;
+                    let index = 0;
+                    while(current){
+                        if(ele === current.element){
+                            return index;
+                        }
+                        index ++;
+                        current = current.next;
+                    }
+                    return -1;
+                };
+
+                this.remove = function(element){
+                    this.removeAt(this.indexOf(element));
+                };
+
+                this.size = function(){
+                    return length;
+                };
+
+                this.isEmpty = function(){
+                    return length === 0;
+                }
+            }
+        </script>
+    </body>
+</html>
